@@ -6,7 +6,7 @@ Raneto on Docker
 Create a data only container with your data directory mounted at /data
 
     mkdir -p ~/.data
-    docker run -d -v ~/.data:/data --name data chanux/raneto true
+    docker run -d -v ~/.data:/data --name data --entrypoint /bin/bash chanux/raneto true
 
     docker run -d --volumes-from data -p 3000:3000 --name raneto chanux/raneto
 

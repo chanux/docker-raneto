@@ -1,4 +1,4 @@
-Setting up Raneto in a docker container
+Raneto on Docker
 ===
 
 # How to use?
@@ -6,9 +6,9 @@ Setting up Raneto in a docker container
 Create a data only container with your data directory mounted at /data
 
     mkdir -p ~/.data
-    sudo docker run -d -v ~/.data:/data --name data debian:wheezy true
+    docker run -d -v ~/.data:/data --name data chanux/raneto true
 
-    sudo docker run -d --volumes-from data -p 3000:3000 --name raneto chanux/raneto
+    docker run -d --volumes-from data -p 3000:3000 --name raneto chanux/raneto
 
 This will run Raneto with default content. Check it out at localhost:3000
 
@@ -16,8 +16,9 @@ You can edit/replace content at ~/.data/raneto
 
 You can also build the image yourself using the Dockerfile.
 
-    sudo docker build -t raneto .
+    docker build -t chanux/raneto .
 
-(Create the data only container as previously instructed.)
+With Docker version 1.9+ you can pass Raneto version at build. (Only works with
+versions up to 0.7.0, the last *simple* Raneto)
 
-    sudo docker run -d --volumes-from data -p 3000:3000 --name my-raneto raneto
+    docker build -t chanux/raneto --build-arg RANETO_VERSION=0.7.0 .
